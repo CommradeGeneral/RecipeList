@@ -6,9 +6,10 @@
     display: flex;
     flex-direction: column;
     gap: 2px;
+    position: relative;
     cursor: pointer;
     transition: ease-in-out transform 0.1s;
-    transform-origin: top left;       
+    transform-origin: center;       
 
     &:hover {
         background-color: rgb(63, 112, 209);
@@ -17,7 +18,7 @@
     }
 
     &:active {
-        transform: rotate(3deg);
+        transform: scale(0.99);
         z-index: 100;
     }
 }

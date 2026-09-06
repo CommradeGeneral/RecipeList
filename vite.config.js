@@ -28,13 +28,13 @@ function inlineClassicScripts() {
         {
           tag: 'script',
           attrs: { 'data-webcc-loader': '' },
-          children: read('./control/js/webcc.min.js'),
+          children: read('./src/js/webcc.min.js'),
           injectTo: 'head-prepend',
         },
         {
           tag: 'script',
           attrs: { 'data-webcc-contract': '' },
-          children: read('./control/code.js'),
+          children: read('./src/code.js'),
           injectTo: 'head-prepend',
         },
       ]
@@ -43,11 +43,11 @@ function inlineClassicScripts() {
 }
 
 export default defineConfig({
-  root: 'control',
+  root: 'src',
   base: './',
   plugins: [inlineClassicScripts(), react(), viteSingleFile()],
   build: {
-    outDir: '../dist',
+    outDir: '../control',
     emptyOutDir: true,
   },
 })

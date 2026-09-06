@@ -44,8 +44,8 @@ function parseRecipes(raw) {
 function App() {
   const bridge = window.RecipeBridge
 
-  const [recipes, setRecipes] = useState(dummyData)
-  const [itemsPerPage, setItemsPerPage] = useState(5)
+  const [recipes, setRecipes] = useState([]);
+  const [itemsPerPage, setItemsPerPage] = useState(102)
   const [searchTerm, setSearchTerm] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
 
@@ -63,6 +63,7 @@ function App() {
 
     bridge.onUpdateRecipeList = (raw) => {
       const parsed = parseRecipes(raw)
+      console.log(raw)
       if (parsed) {
         setRecipes(parsed)
         setCurrentPage(1)
@@ -146,7 +147,7 @@ function App() {
         <OverlayScrollbarsComponent
           className="recipe-list-scroll"
           options={{
-            overflow: { x: 'hidden', y: 'scroll' },
+            overflow: { x: 'visible', y: 'scroll' },
             scrollbars: {
               visibility: 'auto',
               autoHide: 'move',
@@ -163,7 +164,7 @@ function App() {
                 {...recipe}
                 onClick={() => {
                   // Index within the full filtered list, not just this page.
-                  bridge?.fire?.('onPressOnItem', firstItemIndex + i)
+                  bridge?.fire?.('onPressOnItem', recipe);
                 }}
               />
             ))}
